@@ -42,5 +42,6 @@ Ketentuan Pembayaran
   </tbody>
 </table>
 
+<div class="d-flex center-content-end">{{ $post->links() }} </div>
 
 @endsection

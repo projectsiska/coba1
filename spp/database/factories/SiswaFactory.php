@@ -30,7 +30,8 @@ class SiswaFactory extends Factory
     'telepon_ortu'=>$this->faker->phoneNumber() ,
     'kelas_id'=>$this->faker->randomNumber(1, 3),
     'tahun_masuk'=>'2020',
-    'status'=>$this->faker->randomelement(['Mandiri', 'Bantuan']),
+    'status_byr'=>$this->faker->randomelement(['Mandiri', 'Bantuan']),
+    'status_siswa'=>$this->faker->randomelement(['Aktif', 'Alumni', 'Keluar']),
     'username'=>$this->faker->name(),
     'remember_token' => Str::random(10),
     'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi' // password

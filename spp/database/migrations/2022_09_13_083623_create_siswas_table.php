@@ -26,7 +26,8 @@ class CreateSiswasTable extends Migration
             $table->string('telepon_ortu');
             $table->foreignId('kelas_id');
             $table->string('tahun_masuk');
-            $table->string('status');
+            $table->string('status_byr');
+            $table->string('status_siswa');
             $table->string('username')->unique();
             $table->string('password');
             $table->rememberToken();

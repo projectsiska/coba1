@@ -1,72 +1,48 @@
-
-@extends('layouts.main')
-
-
-
-@section('judul')
-Data siswa
-@endsection
-
-
-@section('container')
-
-
-
-
+@extends('layouts.main') @section('judul') Data siswa @endsection @section('container') @if ($post->count()) 
+  
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8"></div>
+        <div class="col-md-4">
+          <form action="/siswa">
+            <div class="input-group mb-3">
+              <input type="text" name="search" class="form-control" 
+              value="{{request('search')}}"
+              placeholder="Search" aria-label="Recipient's username" aria-describedby="basic-addon2">
+              <div class="input-group-append">
+                <button type="submit" class="btn btn-outline-secondary" >Search</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
 <table class="table table-striped">
+
+
   <thead>
     <tr>
       <th scope="col">No</th>
-      <th scope="col">Id siswa</th>
+      <th scope="col">Nis siswa</th>
       <th scope="col">Nama siswa</th>
       <th scope="col">Kelas</th>
       <th scope="col">Aksi</th>
     </tr>
   </thead>
-  <tbody>
-
-<!-- 
-  @if($post->count())
-  
-  <tr>
-      <th scope="row">1</th>
-      <td><a href="/siswa/{{ $post->slug}}">{{ $post->id }}</a></td>
-      <td>{{ $post->nama_siswa }}</td>
-      <td>{{ $post->kelas->nama_kelas }}</td>
+  <tbody> @foreach($post as $posta) <tr>
+      <th scope="row">{{ $posta->id }}</th>
+      <td>
+        <a href="/siswa/{{ $posta->slug}}">{{ $posta->nis }}</a>
+      </td>
+      <td>{{ $posta->nama_siswa }}</td>
+      <td>{{ $posta->kelas_id }}</td>
       <td>@mdo</td>
     </tr>
-    @else 
-    <p class="text-center fs-4"> No Post Found. </p>
-    @endif -->
-  
-    
-      @foreach($post as $aa)
-      
-      
-    <tr>
-      <th scope="row">1</th>
-      <td><a href="/siswa/{{ $aa[0]->slug}}">{{ $aa->id }}</a></td>
-      <td>{{ $aa->nama_siswa }}</td>
-      <td>{{ $aa->kelas->nama_kelas }}</td>
-      <td>@mdo</td>
-    </tr>
-    @endforeach
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td>Larry</td>
-      <td>the Bird</td>
-      <td>@twitter</td>
-      <td>@twitter</td>
-    </tr>
+     @endforeach 
   </tbody>
-</table>
+</table> @Else <p>Post Not Found</p> @endif
 
+<div class="d-flex center-content-end">{{ $post->links() }} </div>
 
 @endsection
+
+</div>

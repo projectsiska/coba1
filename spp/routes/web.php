@@ -3,10 +3,13 @@
 use Illuminate\Support\Facades\Route;
 use App\Models\kelas;
 use App\Http\Controllers\kelasController;
+use App\Models\periode;
 use App\Http\Controllers\periodeController;
-use App\Models\periodeControl;
 use App\Models\siswa;
 use App\Http\Controllers\siswaController;
+use App\Models\pembayaran;
+use App\Http\Controllers\pembayaranController;
+use App\Http\Controllers\LoginController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -61,7 +64,7 @@ Route::get('/periode', function () {
 
 Route::get('/periode',[periodeController::class,'index']);
 
-Route::get('periode/{slug}',[periodeController::class, 'show']);
+Route::get('periode/{q:id}',[periodeController::class, 'show']);
 
 //end periode
 
@@ -81,15 +84,26 @@ Route::get('siswa/{p:slug}',[siswaController::class, 'show']);
 
 
 
+
+
+//pembayaran komponen
+Route::get('/pembayaran', function () {
+ 
+}); 
+
+Route::get('/pembayaran',[pembayaranController::class,'index']);
+
+Route::get('pembayaran/{b:slug}',[pembayaranController::class, 'show']);
+
+//end pembayaran
+
+
+
 Route::get('/ketentuan', function () {
     return view('ketentuan');
 });
-
-
-Route::get('/pembayaran', function () {
-    return view('pembayaran');
-});
-
+ 
+Route::get('/login',[LoginController::class, 'index']);
 
 
 

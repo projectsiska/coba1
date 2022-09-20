@@ -10,8 +10,9 @@ class kelasController extends Controller
      public function index()
      {
            return view('kelas',[
-"id_kelas"=>"Kelasnya",
-"post"=> kelas::all()
+            "id_kelas"=>"Kelasnya",
+            
+            "post"=> kelas::latest()->filter(request(['search']))->paginate(5)->withQueryString() 
 
     ]);
      }

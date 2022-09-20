@@ -15,6 +15,15 @@ class CreatePembayaransTable extends Migration
     {
         Schema::create('pembayarans', function (Blueprint $table) {
             $table->id();
+            $table->string('slug');
+            $table->string('siswa_id');
+            $table->string('periode_id');
+            $table->string('spp');
+            $table->string('denda');
+            $table->string('lainnya');
+            $table->string('total');
+            $table->string('bukti');
+            $table->string('status');
             $table->timestamps();
         });
     }

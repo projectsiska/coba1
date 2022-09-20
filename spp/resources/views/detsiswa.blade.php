@@ -133,7 +133,7 @@
       <td>:</td>
       <td>{{$detsiswa->telepon_ortu}}</td>
     </tr>
-
+<!--
     <tr>
           
       <td>Username siswa</td>
@@ -148,7 +148,7 @@
       <td>:</td>
       <td>{{$detsiswa->password}}</td>
     </tr>
-
+-->
   
   </tbody>
 </table>

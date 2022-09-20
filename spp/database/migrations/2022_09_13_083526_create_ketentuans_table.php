@@ -15,6 +15,10 @@ class CreateKetentuansTable extends Migration
     {
         Schema::create('ketentuans', function (Blueprint $table) {
             $table->id();
+            $table->string('spp');
+            $table->string('denda');
+            $table->string('uang_lainnya');
+            $table->string('keterangan');
             $table->timestamps();
         });
     }

@@ -9,9 +9,10 @@ class siswaController extends Controller
 {
      public function index()
      {
+        // dd(request('search'));
         return view('siswa',[
         "id_siswa"=>"siswanya",
-        "post"=> siswa::with('kelas')->latest()->get()
+        "post"=> siswa::latest()->filter(request(['search']))->paginate(5)->withQueryString() 
 
     ]);
      }

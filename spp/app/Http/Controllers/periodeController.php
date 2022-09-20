@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\periodeControl;
+use App\Models\periode;
 
 class periodeController extends Controller
 {
@@ -11,17 +11,17 @@ class periodeController extends Controller
      {
            return view('periode',[
 "id_periode"=>"periodenya",
-"post"=> periodeControl::all()
+  "post"=> periode::latest()->filter(request(['search']))->paginate(5)->withQueryString() 
 
     ]);
      }
 
-     
-public function show($slug)
+       
+public function show(periode $q)
 {
-   return view('post', [
-        "id_periode" => "per001",
-        "post" => periodeControl::find($slug)
+   return view('detperiode', [
+        "id" => "3",
+        "detperiode" => $q
     ]);   
 }
 }
