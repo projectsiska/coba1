@@ -5,6 +5,10 @@
 @section('container')
  
 <div class="container">
+   <br>
+<a href="" class="btn btn-primary"><span data-feather="arrow-left"></span>Back</a>
+<br>
+<br>
 <div class="row">
 <div class="col-md-3">
 
@@ -16,14 +20,14 @@
           
       <td>kelas</td>
       <td>:</td>
-      <td>{{$detpembayaran->id}}</td>
+      <td>{{$pembayaran->id}}</td>
     </tr>
 
     <tr>
           
       <td>Wali siswa</td>
       <td>:</td>
-      <td>{{$detpembayaran->siswa_id}}</td>
+      <td>{{$pembayaran->siswa_id}}</td>
     </tr>
 
     <tr>
@@ -33,7 +37,7 @@
           
       <td>Username siswa</td>
       <td>:</td>
-      <td>{{$detpembayaran->username}}</td>
+      <td>{{$pembayaran->username}}</td>
     </tr>
 
 
@@ -41,7 +45,7 @@
           
       <td>Password</td>
       <td>:</td>
-      <td>{{$detpembayaran->password}}</td>
+      <td>{{$pembayaran->password}}</td>
     </tr>
 -->
   

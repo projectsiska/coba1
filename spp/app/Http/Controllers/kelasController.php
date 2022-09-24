@@ -4,26 +4,110 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\kelas;
+use \Cviebrock\EloquentSluggable\Services\SlugService;
+
+
 
 class kelasController extends Controller
 {
-     public function index()
-     {
-           return view('kelas',[
+      /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+          return view('kelas.index',[
             "id_kelas"=>"Kelasnya",
             
             "post"=> kelas::latest()->filter(request(['search']))->paginate(5)->withQueryString() 
 
     ]);
-     }
+    }
 
-     
-public function show(kelas $tes)
-{
-   return view('post', [
-        "id" => "1",
-        "post" => $tes
-    ]);   
-}
+    /** 
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        //
+        return view('kelas.create');
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        //
+        
+        $validatedData = $request->validate([
+            'nama_kelas' => 'required|max:25',
+            'slug' => 'required|unique:kelas',
+            'wali_kelas' => 'required'
+        ]);
+
+        die();
+        kelas::create($validatedData);
+        return redirect('/kelas')->with('success','New Kelas Has Been Add!');
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\kelas  $kelas
+     * @return \Illuminate\Http\Response
+     */
+    public function show(kelas $kelas)
+    {
+        //
+return $kelas;
+    
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Models\kelas  $kelas
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(kelas $kelas)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\kelas  $kelas
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, kelas $kelas)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Models\kelas  $kelas
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(kelas $kelas)
+    {
+        //
+    }
+ 
+    public function checkSlug(Request $request)
+    {
+        $slug = SlugService::createSlug(kelas::class, 'slug', $request->nama_kelas);
+        return response()->json(['slug' => $slug]);
+    }
 }
 

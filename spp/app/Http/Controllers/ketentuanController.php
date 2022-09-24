@@ -3,25 +3,24 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\periode;
+use App\Models\ketentuan;
 
-class periodeController extends Controller
+class ketentuanController extends Controller
 {
 
-    /**
+        /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        //
-
-         return view('periode.index',[
-            "id_periode"=>"periodenya",
+          return view('ketentuan.index',[
+            "id_ketentuan"=>"ketentuannya",
             
-            "post"=> periode::latest()->filter(request(['search']))->paginate(5)->withQueryString() 
-         ]);
+            "post"=> ketentuan::latest()->filter(request(['search']))->paginate(5)->withQueryString() 
+
+    ]);
     }
 
     /** 
@@ -48,25 +47,24 @@ class periodeController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\periode  $periode
+     * @param  \App\Models\ketentuan  $ketentuan
      * @return \Illuminate\Http\Response
      */
-    public function show(periode $periode)
+    public function show(ketentuan $ketentuan)
     {
-        //
-          return view('periode.detperiode',[
-        'periode' => $periode
+       
+    return view('ketentuan.detketentuan',[
+        'ketentuan' => $ketentuan
     ]);
-
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\periode  $periode
+     * @param  \App\Models\ketentuan  $ketentuan
      * @return \Illuminate\Http\Response
      */
-    public function edit(periode $periode)
+    public function edit(ketentuan $ketentuan)
     {
         //
     }
@@ -75,10 +73,10 @@ class periodeController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\periode  $periode
+     * @param  \App\Models\ketentuan  $ketentuan
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, periode $periode)
+    public function update(Request $request, ketentuan $ketentuan)
     {
         //
     }
@@ -86,14 +84,14 @@ class periodeController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\periode  $periode
+     * @param  \App\Models\ketentuan  $ketentuan
      * @return \Illuminate\Http\Response
      */
-    public function destroy(periode $periode)
+    public function destroy(ketentuan $ketentuan)
     {
         //
     }
- 
+
+     
  
 }
-

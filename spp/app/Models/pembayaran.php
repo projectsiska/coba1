@@ -71,4 +71,9 @@ class pembayaran extends Model
 
     }
 
+     public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+
 }

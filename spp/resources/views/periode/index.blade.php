@@ -1,21 +1,21 @@
-
+ 
 @extends('layouts.main')
 
 
 
 @section('judul')
-Data Pembayaran
+Data Periode
 @endsection
 
 
-@section('container')
 
+@section('container')
 
 <div class="container">
       <div class="row">
         <div class="col-md-8"></div>
         <div class="col-md-4">
-          <form action="/pembayaran">
+          <form action="/periode">
             <div class="input-group mb-3">
               <input type="text" name="search" class="form-control" 
               value="{{request('search')}}"
@@ -28,34 +28,47 @@ Data Pembayaran
         </div>
       </div>
 
+@if ($post->count())
+  <div class="row">
+  <div class="col-md-4">
+  </div>
+  <div class="col-md-8">
+    <form action="/periode">
+    </form>
+  </div>
+  </div>
+
 <table class="table table-striped">
   <thead>
     <tr>
       <th scope="col">No</th>
-      <th scope="col">Periode</th>
-      <th scope="col">Nama siswa</th>
-      <th scope="col">Total</th>
-      <th scope="col">Aksi</th>
+      <th scope="col">Id Periode</th>
+      <th scope="col">Bulan</th>
+      <th scope="col">Tahun</th> 
+      <th scope="col">Aksi</th> 
     </tr>
   </thead>
   <tbody>
-  
-    
       @foreach($post as $posta)
       
-      
     <tr>
-      <th scope="row">1</th>
-      <td><a href="/detpembayaran/{{$posta->slug}}">{{ $posta->periode->bulan }} {{ $posta->periode->tahun }}</a></td>
-      <td>{{ $posta->siswa->nama_siswa }}</td>
-      <td>{{ $posta->total }}</td>
-      <td>@mdo</td>
+      <th scope="row">{{$loop->iteration}}</th>
+      <td><a href="/periode/{{ $posta['id']}}"> {{ $posta['id'] }} </a></td>
+      <td>{{ $posta['bulan'] }}</td>
+      <td>{{ $posta['tahun'] }}</td>
+      <td><button type="button" class="btn btn-warning">Edit</button>
+<button type="button" class="btn btn-danger">Hapus</button></td></td>
     </tr>
     @endforeach
-     
+    
   </tbody>
 </table>
 
+
+@Else
+<p>posta Not Found</p>
+
+@endif
 <div class="d-flex center-content-end">{{ $post->links() }} </div>
 
 @endsection

@@ -5,8 +5,14 @@
 @section('container')
  
 <div class="container">
+  <br>
+<a href="" class="btn btn-primary"><span data-feather="arrow-left"></span>Back</a>
+<br>
+<br>
 <div class="row">
-<div class="col-md-3">
+
+
+<div class="col-md-4">
 
 <table class="table">
    
@@ -16,28 +22,35 @@
           
       <td>kelas</td>
       <td>:</td>
-      <td>{{$detsiswa->kelas->nama_kelas}}</td>
+      <td>{{$siswa->kelas->nama_kelas}}</td>
     </tr>
 
     <tr>
           
       <td>Wali siswa</td>
       <td>:</td>
-      <td>{{$detsiswa->kelas->wali_kelas}}</td>
+      <td>{{$siswa->kelas->wali_kelas}}</td>
     </tr>
 
     <tr>
           
       <td>Tahun Masuk</td>
       <td>:</td>
-      <td>{{$detsiswa->tahun_masuk}}</td>
+      <td>{{$siswa->tahun_masuk}}</td>
     </tr>
 
     <tr>
           
-      <td>Wali siswa</td>
+      <td>Status siswa</td>
       <td>:</td>
-      <td>{{$detsiswa->status}}</td>
+      <td>{{$siswa->status_siswa}}</td>
+    </tr>
+
+    <tr>
+          
+      <td>Status Pembayaran</td>
+      <td>:</td>
+      <td>{{$siswa->status_byr}}</td>
     </tr>
 
     
@@ -48,7 +61,7 @@
 
 
 
-<div class="col-md-9">
+<div class="col-md-8">
 <table class="table">
    
   <tbody>
@@ -56,14 +69,14 @@
          
       <td>Id siswa</td>
       <td>:</td>
-      <td>{{$detsiswa->id}}</td> 
+      <td>{{$siswa->id}}</td> 
     </tr>
 
     <tr>
           
       <td>NIS siswa</td>
       <td>:</td>
-      <td>{{$detsiswa->nis}}</td>
+      <td>{{$siswa->nis}}</td>
     </tr>
 
 
@@ -71,14 +84,14 @@
           
       <td>Nama siswa</td>
       <td>:</td>
-      <td>{{$detsiswa->nama_siswa}}</td>
+      <td>{{$siswa->nama_siswa}}</td>
     </tr>
 
     <tr>
           
       <td>Genre</td>
       <td>:</td>
-      <td>{{$detsiswa->jk}}</td>
+      <td>{{$siswa->jk}}</td>
     </tr>
 
 
@@ -86,14 +99,14 @@
           
       <td>Alamat siswa</td>
       <td>:</td>
-      <td>{{$detsiswa->alamat}}</td>
+      <td>{{$siswa->alamat}}</td>
     </tr>
 
     <tr>
           
       <td>Telepon siswa</td>
       <td>:</td>
-      <td>{{$detsiswa->telepon}}</td>
+      <td>{{$siswa->telepon}}</td>
     </tr>
 
 
@@ -101,14 +114,14 @@
           
       <td>Nama Ayah</td>
       <td>:</td>
-      <td>{{$detsiswa->nama_ayah}}</td>
+      <td>{{$siswa->nama_ayah}}</td>
     </tr>
     
     <tr>
           
       <td>NIS siswa</td>
       <td>:</td>
-      <td>{{$detsiswa->nis}}</td>
+      <td>{{$siswa->nis}}</td>
     </tr>
 
 
@@ -116,14 +129,14 @@
           
       <td>Nama Ibu</td>
       <td>:</td>
-      <td>{{$detsiswa->nama_ibu}}</td>
+      <td>{{$siswa->nama_ibu}}</td>
     </tr>
 
     <tr>
           
       <td>NIS siswa</td>
       <td>:</td>
-      <td>{{$detsiswa->nis}}</td>
+      <td>{{$siswa->nis}}</td>
     </tr>
 
 
@@ -131,14 +144,14 @@
           
       <td>Telepon Orang Tua</td>
       <td>:</td>
-      <td>{{$detsiswa->telepon_ortu}}</td>
+      <td>{{$siswa->telepon_ortu}}</td>
     </tr>
 <!--
     <tr>
           
       <td>Username siswa</td>
       <td>:</td>
-      <td>{{$detsiswa->username}}</td>
+      <td>{{$siswa->username}}</td>
     </tr>
 
 
@@ -146,7 +159,7 @@
           
       <td>Password</td>
       <td>:</td>
-      <td>{{$detsiswa->password}}</td>
+      <td>{{$siswa->password}}</td>
     </tr>
 -->
   

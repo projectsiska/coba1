@@ -26,16 +26,17 @@
       <th scope="col">Nama siswa</th>
       <th scope="col">Kelas</th>
       <th scope="col">Aksi</th>
-    </tr>
+    </tr> 
   </thead>
   <tbody> @foreach($post as $posta) <tr>
-      <th scope="row">{{ $posta->id }}</th>
+      <th scope="row">{{ $loop->iteration }}</th>
       <td>
         <a href="/siswa/{{ $posta->slug}}">{{ $posta->nis }}</a>
       </td>
       <td>{{ $posta->nama_siswa }}</td>
-      <td>{{ $posta->kelas_id }}</td>
-      <td>@mdo</td>
+      <td>{{ $posta->kelas->nama_kelas }}</td>
+      <td><button type="button" class="btn btn-warning">Edit</button>
+<button type="button" class="btn btn-danger">Hapus</button></td>
     </tr>
      @endforeach 
   </tbody>

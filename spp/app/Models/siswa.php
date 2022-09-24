@@ -34,6 +34,11 @@ class siswa extends Model
             ;
         }
     }
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
 }
 
 ?>

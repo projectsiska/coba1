@@ -12,7 +12,9 @@ Data Kelas
 
 <div class="container">
       <div class="row">
-        <div class="col-md-8"></div>
+        <div class="col-md-8">
+          <a type="button" href="/kelas/create" class="btn btn-primary">Tambah</a> 
+        </div>
         <div class="col-md-4">
           <form action="/kelas">
             <div class="input-group mb-3">
@@ -25,13 +27,18 @@ Data Kelas
             </div>
           </form>
         </div>
+      </div> 
+
+   @if(session()->has('success'))
+      <div class="alert alert-success" role="alert">
+        {{session('success')}}
       </div>
+  @endif
 
 <table class="table table-striped">
   <thead>
     <tr>
-      <th scope="col">No</th>
-      <th scope="col">Id Kelas</th>
+      <th scope="col">No</th> 
       <th scope="col">Nama Kelas</th>
       <th scope="col">Wali Kelas</th>
       <th scope="col">Aksi</th>
@@ -41,11 +48,12 @@ Data Kelas
       @foreach($post as $posta)
       
     <tr>
-      <th scope="row">1</th>
-      <td><a href="/kelas/{{ $posta->slug}}">{{ $posta->id }}</a></td>
+      <th scope="row">{{$loop->iteration}}</th> 
       <td>{{ $posta->nama_kelas }}</td>
       <td>{{ $posta->wali_kelas }}</td>
-      <td>@mdo</td>
+      <td>
+<button type="button" class="btn btn-warning">Edit</button>
+<button type="button" class="btn btn-danger">Hapus</button></td>
     </tr>
     @endforeach
     

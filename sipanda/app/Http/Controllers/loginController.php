@@ -25,6 +25,7 @@ class loginController extends Controller
         if(Auth::attempt($credentials))
         {
             $request->session()->regenerate();
+            dd($credentials->user->level);
             return redirect()->intended('/admin');
         }
 

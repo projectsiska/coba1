@@ -22,4 +22,9 @@ class periode extends Model
             ;
         }
     }
+
+      public function getRouteKeyName()
+    {
+        return 'id';
+    }
 }

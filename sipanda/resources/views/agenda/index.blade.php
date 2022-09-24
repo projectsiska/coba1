@@ -34,38 +34,25 @@
                 <th scope="col">Tempat</th>
                 <th scope="col">Penyelenggara</th>
                 <th scope="col">Disposisi</th>
-                <th scope="col">Keterangan</th>
-                  
+                <th scope="col">Keterangan</th> 
+                <th class="text-center">Aksi</th>
+                 
                 </tr>
             </thead>
             <tbody style="overflow:auto;">
-
-            
              @foreach($gabungan as $posta)
               
-               @if($posta->count() == 1)
-               <tr>
-                <th rowspan="1">{{ $a = \Carbon\Carbon::parse($posta->tanggal)->translatedFormat('l, d M Y')}}</th>
+                <tr> 
+                <th rowspan="">{{ $a = \Carbon\Carbon::parse($posta->tanggal)->translatedFormat('l, d M Y')}}</th>
                 <td>{{ $b = \Carbon\Carbon::parse($posta->jam)->translatedFormat('H:s')}}</td>
                 <td>{{ $posta->acara }}</td>
                 <td>{{ $posta->tempat }}</td>
                 <td>{{ $posta->penyelenggara }}</td>
                 <td>{{ $posta->disposisi }} - {{ $posta->kehadiran }}</td>
                 <td>{{ $posta->keterangan }} </td>
-               </tr>
-               
-               @else 
-                <tr>
-                <th rowspan="1">{{ $a = \Carbon\Carbon::parse($posta->tanggal)->translatedFormat('l, d M Y')}}</th>
-                <td>{{ $b = \Carbon\Carbon::parse($posta->jam)->translatedFormat('H:s')}}</td>
-                <td>{{ $posta->acara }}</td>
-                <td>{{ $posta->tempat }}</td>
-                <td>{{ $posta->penyelenggara }}</td>
-                <td>{{ $posta->disposisi }} - {{ $posta->kehadiran }}</td>
-                <td>{{ $posta->keterangan }} </td>
-               </tr>
+                <td><div class="button">Edit</div> <div class="button">Hapus</div></td>
+                </tr>
 
-               @endif
              @endforeach
                
                 

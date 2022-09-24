@@ -8,8 +8,10 @@ use App\Http\Controllers\periodeController;
 use App\Models\siswa;
 use App\Http\Controllers\siswaController;
 use App\Models\pembayaran;
+use App\Models\ketentuan;
 use App\Http\Controllers\pembayaranController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\ketentuanController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -45,41 +47,30 @@ Route::get('/', function () {
 
 
 //kelas komponen
-Route::get('/kelas', function () {
  
-});
+/* Route::get('/kelas', function() {
+    return view('kelas.index');
+});  */
 
-Route::get('/kelas',[kelasController::class,'index']);
-
-Route::get('kelas/{tes:slug}',[kelasController::class, 'show']);
-
-//end kelas
+Route::get('/kelas/checkSlug', [kelasController::class, 'checkSlug']);
+Route::resource('/kelas', kelasController::class);
+ 
+ //end kelas
 
 
 //periode komponen
 
-Route::get('/periode', function () {
+Route::resource('/periode', periodeController::class);
  
-});
-
-Route::get('/periode',[periodeController::class,'index']);
-
-Route::get('periode/{q:id}',[periodeController::class, 'show']);
-
 //end periode
 
 
 
 
 //siswa komponen
-Route::get('/siswa', function () {
+
+Route::resource('/siswa', siswaController::class); 
  
-}); 
-
-Route::get('/siswa',[siswaController::class,'index']);
-
-Route::get('siswa/{p:slug}',[siswaController::class, 'show']);
-
 //end siswa
 
 
@@ -87,23 +78,23 @@ Route::get('siswa/{p:slug}',[siswaController::class, 'show']);
 
 
 //pembayaran komponen
-Route::get('/pembayaran', function () {
- 
-}); 
 
-Route::get('/pembayaran',[pembayaranController::class,'index']);
-
-Route::get('pembayaran/{b:slug}',[pembayaranController::class, 'show']);
+Route::resource('/pembayaran', pembayaranController::class); 
 
 //end pembayaran
 
 
 
-Route::get('/ketentuan', function () {
-    return view('ketentuan');
-});
+//ketentuan komponen
+
+Route::resource('/ketentuan', ketentuanController::class); 
+
+//end ketentuan
+
  
+ /* 
 Route::get('/login',[LoginController::class, 'index']);
+Route::post('/login',[LoginController::class, 'authenticate']); */
 
 
 

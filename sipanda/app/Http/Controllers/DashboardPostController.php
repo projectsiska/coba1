@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\agenda;
 use Illuminate\Http\Request;
-use App\Models\periode;
 
-class periodeController extends Controller
+class DashboardagendaController extends Controller
 {
-
     /**
      * Display a listing of the resource.
      *
@@ -16,12 +15,6 @@ class periodeController extends Controller
     public function index()
     {
         //
-
-         return view('periode.index',[
-            "id_periode"=>"periodenya",
-            
-            "post"=> periode::latest()->filter(request(['search']))->paginate(5)->withQueryString() 
-         ]);
     }
 
     /** 
@@ -48,25 +41,21 @@ class periodeController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\periode  $periode
+     * @param  \App\Models\agenda  $agenda
      * @return \Illuminate\Http\Response
      */
-    public function show(periode $periode)
+    public function show(agenda $agenda)
     {
         //
-          return view('periode.detperiode',[
-        'periode' => $periode
-    ]);
-
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\periode  $periode
+     * @param  \App\Models\agenda  $agenda
      * @return \Illuminate\Http\Response
      */
-    public function edit(periode $periode)
+    public function edit(agenda $agenda)
     {
         //
     }
@@ -75,10 +64,10 @@ class periodeController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\periode  $periode
+     * @param  \App\Models\agenda  $agenda
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, periode $periode)
+    public function update(Request $request, agenda $agenda)
     {
         //
     }
@@ -86,14 +75,11 @@ class periodeController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\periode  $periode
+     * @param  \App\Models\agenda  $agenda
      * @return \Illuminate\Http\Response
      */
-    public function destroy(periode $periode)
+    public function destroy(agenda $agenda)
     {
         //
     }
- 
- 
 }
-

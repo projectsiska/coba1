@@ -24,8 +24,22 @@ use App\Http\Controllers\homeController;
 */
 
 Route::get('/', function () {
-    return view('home');
-});
+    return view('home',[
+            "id_admin"=>"adminnya",
+            "title"=>"dashboard",
+            
+           "post"=> agenda::orderBy('tanggal','desc')
+            ->orderBy('jam','asc'),
+
+            "gabungan"=> agenda::orderBy('tanggal','desc') 
+            ->orderBy('jam','asc')
+            ->filter(request(['search']))
+            ->paginate(5)->withQueryString() 
+            
+            ]);
+             
+
+})->middleware('auth');
 
 Route::get('/',[homeController::class,'index']);
  
@@ -40,12 +54,9 @@ Route::get('/admin',[adminController::class,'index']);
 Route::get('/agenda', function () {
     return view('agenda');
 });
+ 
 
-Route::get('/tbagenda', function () {
-    return view('tbagenda');
-});
-
-Route::get('/agenda',[agendaController::class,'index']);
+Route::resource('/agenda', agendaController::class)->middleware('auth');
 //end agenda
 //user
 
@@ -59,3 +70,4 @@ Route::get('/user',[userController::class,'index']);
 
 Route::get('/login', [loginController::class,'index']);
 Route::post('/login', [loginController::class,'authenticate']);
+Route::post('/logout', [loginController::class,'logout']);

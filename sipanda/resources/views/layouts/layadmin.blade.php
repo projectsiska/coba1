@@ -5,6 +5,8 @@
 <link rel="stylesheet" href="font-awsome/css/font-awesome.min.css">
  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
+ 
+
 <title>SIPANDA</title>
     </head>
 <div class="center">
@@ -22,7 +24,7 @@
     </div>
     <div class="company">
       <div class="company-name">Administrator</div>
-      <div class="company-description">Selamat Datang Admin.. <Br>Semangat!</div>
+      <div class="company-description" style="font-size:14px">Selamat Datang {{auth()->user()->name}}.. <Br>Semangat!</div>
     </div>
     
     <div class="navigation">
@@ -31,7 +33,7 @@
         <li><i class="fa fa-home" aria-hidden="true"></i><a href="admin"><span>&nbsp; Home</span></a></li>
         <li><i class="fa fa-user" aria-hidden="true"></i> <span><a href="user">&nbsp; User</a></span></li>
         <li><i class="fa fa-calendar" aria-hidden="true"></i><a href="agenda"><span>&nbsp; Agenda</span></a></li>
-        <li><i class="fa fa-out" aria-hidden="true"></i><a href="/login"><span>&nbsp; LogOut</span></a></li>
+        <li><form action="/logout" method="post"> @csrf  LogOut </form></li>
        
       </ul>
     </div>

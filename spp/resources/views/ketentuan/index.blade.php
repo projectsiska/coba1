@@ -25,20 +25,19 @@ Ketentuan Pembayaran
   </thead>
   <tbody>
  
+      @foreach($post as $posta)
+      
     <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-      <td>@fat</td>
+      <th scope="row">{{$loop->iteration}}</th>
+      <td><a href="/ketentuan/{{ $posta['id']}}"> {{ $posta['id'] }} </a></td>
+      <td>{{ $posta['spp'] }}</td>
+      <td>{{ $posta['denda'] }}</td> 
+      <td>{{ $posta['uang_lainnya'] }}</td>
+      <td>{{ $posta['keterangan'] }}</td>
+      <td><button type="button" class="btn btn-warning">Edit</button>
+<button type="button" class="btn btn-danger">Hapus</button></td></td>
     </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td>Larry</td>
-      <td>the Bird</td>
-      <td>@twitter</td>
-      <td>@twitter</td>
-    </tr>
+    @endforeach
   </tbody>
 </table>
 

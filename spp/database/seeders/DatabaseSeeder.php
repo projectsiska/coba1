@@ -24,7 +24,13 @@ class DatabaseSeeder extends Seeder
         Kelas::factory(8)->create();
    
 
- 
+  User::create([
+        'name'=> 'Admin Siska',
+        'email'=> 'sh.fransiskadewi@gmail.com',
+        'level'=> 'Administrator',
+        'username'=> 'siska',
+        'password'=> bcrypt('siska')
+        ]);
 
 
     }
