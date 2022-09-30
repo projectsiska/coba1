@@ -103,7 +103,7 @@ public function show($id)
     public function update(Request $request, kelas $kelas)
     {
         //
-//dd($kelas);
+
          $validatedData = $request->validate([
             'nama_kelas' => 'required|max:25',
              
