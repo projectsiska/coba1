@@ -28,9 +28,10 @@ class ketentuanController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+     public function create()
     {
         //
+        return view('ketentuan.create');
     }
 
     /**
@@ -42,6 +43,21 @@ class ketentuanController extends Controller
     public function store(Request $request)
     {
         //
+        // dd($request->all());
+        
+        
+
+         
+        $validatedData = $request->validate([
+            'spp' => 'required',
+            'denda' => 'required',
+            'uang_lainnya' => 'required',
+            'keterangan' => 'required'
+        ]);
+
+        // die();
+        ketentuan::create($validatedData);
+        return redirect('/ketentuan')->with('success','New ketentuan Has Been Add!');
     }
 
     /**

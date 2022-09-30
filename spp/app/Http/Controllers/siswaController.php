@@ -4,9 +4,33 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\siswa;
+use App\Models\kelas;
+use \Cviebrock\EloquentSluggable\Services\SlugService;
+
 
 class siswaController extends Controller
 {
+
+
+    public $table = "siswas";
+
+    protected $fillable = [
+        'nis', 
+        'nama_siswa', 
+        'slug', 
+        'jk', 
+        'alamat',
+        'telepon',
+        'nama_ayah',
+        'nama_ibu',
+        'telepon_ortu',
+        'kelas_id',
+        'tahun_masuk',
+        'status_byr',
+        'status_siswa',
+        'username',
+        'password' 
+    ];
 
         /**
      * Display a listing of the resource.
@@ -28,9 +52,12 @@ class siswaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+      public function create()
     {
         //
+        return view('siswa.create', [
+            'kelas' => kelas::all()
+        ]);
     }
 
     /**
@@ -42,6 +69,32 @@ class siswaController extends Controller
     public function store(Request $request)
     {
         //
+         
+        $validatedData = $request->validate([
+            'nis' => 'required|unique:siswas',
+            'nama_siswa' => 'required',
+            'slug' => 'required',
+            'jk' => 'required',
+            'alamat' => 'required',
+            'telepon' => 'required',
+            'nama_ayah' => 'required',
+            'nama_ibu' => 'required',
+            'telepon_ortu' => 'required',
+            'kelas_id' => 'required',
+            'tahun_masuk' => 'required',
+            'status_byr' => 'required',
+            'status_siswa' => 'required',
+            'username' => 'required|unique:siswas',
+            'password' => 'required'
+        ]);
+
+        dd($validatedData->all());
+
+        $validatedData['password']=bcrypt($validatedData['password']);
+
+        // die();
+        siswa::create($validatedData);
+        return redirect('/siswa')->with('success','New siswa Has Been Add!');
     }
 
     /**
@@ -92,7 +145,11 @@ class siswaController extends Controller
         //
     }
 
-     
+      public function checkSlug(Request $request)
+    {
+        $slug = SlugService::createSlug(siswa::class, 'slug', $request->nis);
+        return response()->json(['slug' => $slug]);
+    }
  
 }
 

@@ -2,7 +2,9 @@
   
     <div class="container">
       <div class="row">
-        <div class="col-md-8"></div>
+        <div class="col-md-8">
+          <a type="button" href="/siswa/create" class="btn btn-primary">Tambah</a> 
+        </div>
         <div class="col-md-4">
           <form action="/siswa">
             <div class="input-group mb-3">
@@ -26,7 +28,7 @@
       <th scope="col">Nama siswa</th>
       <th scope="col">Kelas</th>
       <th scope="col">Aksi</th>
-    </tr> 
+    </tr>
   </thead>
   <tbody> @foreach($post as $posta) <tr>
       <th scope="row">{{ $loop->iteration }}</th>

@@ -10,6 +10,11 @@ use \Cviebrock\EloquentSluggable\Services\SlugService;
 
 class kelasController extends Controller
 {
+    protected $fillable = [
+        'nama_kelas',  
+        'slug', 
+        'wali_kelas' 
+    ];
       /**
      * Display a listing of the resource.
      *
@@ -45,14 +50,14 @@ class kelasController extends Controller
     public function store(Request $request)
     {
         //
-        
-        $validatedData = $request->validate([
+        // dd($request->all());
+        $validatedData = $request->validatse([
             'nama_kelas' => 'required|max:25',
             'slug' => 'required|unique:kelas',
             'wali_kelas' => 'required'
         ]);
 
-        die();
+        // die();
         kelas::create($validatedData);
         return redirect('/kelas')->with('success','New Kelas Has Been Add!');
     }
@@ -63,11 +68,13 @@ class kelasController extends Controller
      * @param  \App\Models\kelas  $kelas
      * @return \Illuminate\Http\Response
      */
-    public function show(kelas $kelas)
+public function show($id)
     {
-        //
-return $kelas;
-    
+       // dd($id);
+     $kelas = array(
+         'id_kelas'=>"kelasnya",
+         'kelas'=> kelas::find($id));
+    return view('kelas.detkelas')->with($kelas);
     }
 
     /**
@@ -76,9 +83,14 @@ return $kelas;
      * @param  \App\Models\kelas  $kelas
      * @return \Illuminate\Http\Response
      */
-    public function edit(kelas $kelas)
+    public function edit($id)
     {
-        //
+         $kelas = array(
+         'id_kelas'=>"kelasnya",
+         'kelas'=> kelas::find($id));
+
+        return view('kelas.edit')->with($kelas);
+          
     }
 
     /**
@@ -91,6 +103,21 @@ return $kelas;
     public function update(Request $request, kelas $kelas)
     {
         //
+//dd($kelas);
+         $validatedData = $request->validate([
+            'nama_kelas' => 'required|max:25',
+             
+            'wali_kelas' => 'required'
+        ]);
+
+        if($request->slug !=$kelas->slug)
+        {
+            $rules['slug'] = 'required|unique:kelas';
+        }
+        kelas::where('id',$kelas->id)
+        ->update($validatedData);
+        return redirect('/kelas')->with('success','kelas Has Been Update!');
+        
     }
 
     /**
@@ -101,7 +128,10 @@ return $kelas;
      */
     public function destroy(kelas $kelas)
     {
-        //
+        // dd($kelas->all());
+        kelas::destroy($kelas->id);
+        return redirect('/kelas')->with('deleted','kelas Has Been Deleted!');
+  
     }
  
     public function checkSlug(Request $request)

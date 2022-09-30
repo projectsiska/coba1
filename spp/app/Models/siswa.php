@@ -4,10 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Cviebrock\EloquentSluggable\Sluggable;
 
 class siswa extends Model
 {
     use HasFactory;
+    
+    use Sluggable;
 
     protected $guarded= ['id']; 
     protected $with= ['kelas']; 
@@ -33,6 +36,15 @@ class siswa extends Model
                   ->orwhere('status_siswa','like', '%'. request('search').'%')
             ;
         }
+    }
+
+     public function sluggable(): array
+    {
+        return [
+            'slug' => [
+                'source' => 'nis'
+            ]
+        ];
     }
 
     public function getRouteKeyName()

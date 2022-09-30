@@ -4,17 +4,20 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Cviebrock\EloquentSluggable\Sluggable;
 
 class pembayaran extends Model
 {
      use HasFactory;
+     use Sluggable;
+
 
     protected $guarded= ['id'];  
-    protected $with= ['siswa'];   
+    protected $with= ['pembayaran'];   
 
-    public function siswa()
+    public function pembayaran()
     {
-        return $this->belongsTo(siswa::class);
+        return $this->belongsTo(pembayaran::class);
     }
 
      public function periode()
@@ -24,7 +27,7 @@ class pembayaran extends Model
 
       public function kelas()
     {
-        return $this->belongsTo(siswa::class);
+        return $this->belongsTo(pembayaran::class);
     }
 
      public function ketentuan()
@@ -37,7 +40,7 @@ class pembayaran extends Model
     {
 
          /*  if(request('search')) {
-            $query->where('siswa_id','like', '%'. request('search').'%')
+            $query->where('pembayaran_id','like', '%'. request('search').'%')
                   ->orwhere('periode_id','like', '%'. request('search').'%')
                   ->orwhere('spp','like', '%'. request('search').'%')
                   ->orwhere('denda','like', '%'. request('search').'%')
@@ -51,7 +54,7 @@ class pembayaran extends Model
 
         $query->when($filters['search'] ?? false, function($query, $search){
 
-            return $query->where('siswa_id','like', '%'. $search.'%')
+            return $query->where('pembayaran_id','like', '%'. $search.'%')
                          ->where('periode_id','like', '%'. $search.'%')
                          ->where('spp','like', '%'. $search.'%')
                          ->where('denda','like', '%'. $search.'%')
@@ -62,18 +65,28 @@ class pembayaran extends Model
                          ;
         });
 
-        $query->when($filters['siswa'] ?? false, function($query, $siswa){
-            return $query->whereHas('siswa', function($query) use ($siswa) {
-                         $query->where('slug', $siswa);
+        $query->when($filters['pembayaran'] ?? false, function($query, $pembayaran){
+            return $query->whereHas('pembayaran', function($query) use ($pembayaran) {
+                         $query->where('slug', $pembayaran);
                          
             });
         });
 
     }
 
-     public function getRouteKeyName()
+      public function getRouteKeyName()
     {
         return 'slug';
+    }
+ 
+    public function sluggable(): array
+    {
+        return [
+            'slug' => [
+                'source' => 'periode',
+                'source2' => 'id'
+            ]
+        ];
     }
 
 }

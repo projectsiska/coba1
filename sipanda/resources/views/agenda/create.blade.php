@@ -4,12 +4,18 @@
 
 
 @section('judul')
-Data Agenda
+Data siswa
 @endsection
 
 
 @section('container')
+ <link rel="stylesheet" href="/css/style.css">
+ <link rel="stylesheet" href="/js/jam.js">
+<link rel="stylesheet" href="/font-awsome/css/font-awesome.min.css">
+ <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
  
+
  <!-- CSS Boostrap -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
 <!-- CSS Bootstrap Datepicker -->
@@ -22,8 +28,8 @@ Data Agenda
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.js">
 </script>
 <!-- Javascript Bootstrap Datepicker -->
-<script
-src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.js">
+<script src="/js/jam.js"
+href="/js/jam.js">
 </script>
 
 <style>
@@ -38,20 +44,20 @@ body{
     padding-bottom: 10px;
     padding-right: 20px;
 ">
- <form action="">
+ <form method="post" action="/agenda">
 <div class="row" style="margin-bottom:20px!important">
- 
+  @csrf
   <div class="col-md-4">
       <div class="form-group">
       <label  class="control-label" >Tanggal:</label>
       <br> 
-        <input type="text" Placeholder="Pilih Tanggal" class="form-control datepicker" style="border-color : seashell; border-style:double">
+        <input type="text" name="tanggal" Placeholder="Pilih Tanggal" class="form-control datepicker" style="border-color : seashell; border-style:double">
       </div>
 
       <div class="form-group">
       <label  class="control-label" >Waktu:</label>
       <br> 
-        <input type="time" Placeholder="Pilih Tanggal" class="form-control" style="border-color : seashell; border-style:double">
+        <input type="time" name="jam" Placeholder="Pilih Tanggal" class="form-control" style="border-color : seashell; border-style:double">
       </div>
 
   </div>
@@ -61,19 +67,19 @@ body{
     <div class="form-group">
       <label  class="control-label" >Acara:</label>
       <br> 
-        <input type="text" Placeholder="Ketik Acaranya" class="form-control" >
+        <input type="text" name="acara" Placeholder="Ketik Acaranya" class="form-control" >
       </div>
 
       <div class="form-group">
       <label  class="control-label" >Tempat:</label>
       <br> 
-        <input type="Tempat" Placeholder="Dimana Tempatnya?" class="form-control" >
+        <input type="Tempat" name="tempat" Placeholder="Dimana Tempatnya?" class="form-control" >
       </div>
 
       <div class="form-group">
       <label  class="control-label" >Penyelenggara:</label>
       <br> 
-        <input type="Tempat" Placeholder="Siapa Penyelenggaranya?" class="form-control" >
+        <input type="Tempat" name="penyelenggara" Placeholder="Siapa Penyelenggaranya?" class="form-control" >
       </div>
 
 
@@ -90,33 +96,33 @@ body{
      <br>
      <br>
     <div class="form-check form-check-inline">
-      <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="Sekretaris">
-      <label class="form-check" for="inlineCheckbox1">Sekretaris</label>
+      <input class="form-check-input" name="disposisi" type="radio" id="inlineradio1" value="Sekretaris">
+      <label class="form-check" for="inlineradio1">Sekretaris</label>
     </div>
     <br>
     <div class="form-check form-check-inline">
-      <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="Kabid PPEPD">
-      <label class="form-check" for="inlineCheckbox2">Kabid PPEPD</label>
+      <input class="form-check-input" name="disposisi" type="radio" id="inlineradio2" value="Kabid PPEPD">
+      <label class="form-check" for="inlineradio2">Kabid PPEPD</label>
     </div>
     <br>
         <div class="form-check form-check-inline">
-      <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="Kabit PPM">
-      <label class="form-check" for="inlineCheckbox3">Kabit PPM</label>
+      <input class="form-check-input" name="disposisi" type="radio" id="inlineradio1" value="Kabit PPM">
+      <label class="form-check" for="inlineradio3">Kabit PPM</label>
     </div>
     <br>
     <div class="form-check form-check-inline">
-      <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="Kabid PSI">
-      <label class="form-check" for="inlineCheckbox4">Kabid PSI</label>
+      <input class="form-check-input" name="disposisi" type="radio" id="inlineradio2" value="Kabid PSI">
+      <label class="form-check" for="inlineradio4">Kabid PSI</label>
     </div>
     <br> 
         <div class="form-check form-check-inline">
-      <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="Kabid Litbang">
-      <label class="form-check" for="inlineCheckbox3">Kabid Litbang</label>
+      <input class="form-check-input" name="disposisi" type="radio" id="inlineradio1" value="Kabid Litbang">
+      <label class="form-check" for="inlineradio3">Kabid Litbang</label>
     </div>
     <br>
     <div class="form-check form-check-inline">
-      <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="Semua Kabit">
-      <label class="form-check" for="inlineCheckbox4">Semua Kabit</label>
+      <input class="form-check-input" name="disposisi" type="radio" id="inlineradio2" value="Semua Kabid">
+      <label class="form-check" for="inlineradio4">Semua Kabid</label>
     </div>
 </div>
 
@@ -129,27 +135,27 @@ body{
      <br>
      <br>
     <div class="form-check form-check-inline">
-    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="Mewakili">
+    <input class="form-check-input" name="kehadiran" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="Mewakili">
     <label class="form-check-" for="inlineRadio1">Mewakili</label>
     </div>
     <br>
     <div class="form-check form-check-inline">
-      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="Hadir">
+      <input class="form-check-input" name="kehadiran" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="Hadir">
       <label class="form-check-" for="inlineRadio2">Hadir</label>
     </div>
     <br>
     <div class="form-check form-check-inline">
-      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="Bersama Saya">
+      <input class="form-check-input" name="kehadiran" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="Bersama Saya">
       <label class="form-check-" for="inlineRadio1">Bersama Saya</label>
     </div>
     <br>
     <div class="form-check form-check-inline">
-      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio4" value="Utus JFT">
+      <input class="form-check-input" name="kehadiran" type="radio" name="inlineRadioOptions" id="inlineRadio4" value="Utus JFT">
       <label class="form-check-" for="inlineRadio2">Utus JFT</label>
     </div> 
     <br>
     <div class="form-check form-check-inline">
-      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio5" value="Utus Staff">
+      <input class="form-check-input" name="kehadiran" type="radio" name="inlineRadioOptions" id="inlineRadio5" value="Utus Staff">
       <label class="form-check-" for="inlineRadio2">Utus Staff</label>
     </div> 
 
@@ -157,7 +163,7 @@ body{
 </div>
   <div class="col-md-5">
      <label for="exampleFormControlTextarea1">Keterangan</label>
-    <textarea  class="form-control" rows="4"> </textarea>
+    <textarea name="keterangan" class="form-control" rows="4"> </textarea>
   </div>
 
   </div>

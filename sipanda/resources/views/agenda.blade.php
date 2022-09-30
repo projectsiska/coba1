@@ -41,20 +41,10 @@
             <tbody style="overflow:auto;">
 
             
-             @foreach($gabungan as $posta)
+             
+             @foreach($gabungan as $key => $posta)
               
-               @if($posta->count() == 1)
-               <tr>
-                <th rowspan="1">{{ $a = \Carbon\Carbon::parse($posta->tanggal)->translatedFormat('l, d M Y')}}</th>
-                <td>{{ $b = \Carbon\Carbon::parse($posta->jam)->translatedFormat('H:s')}}</td>
-                <td>{{ $posta->acara }}</td>
-                <td>{{ $posta->tempat }}</td>
-                <td>{{ $posta->penyelenggara }}</td>
-                <td>{{ $posta->disposisi }} - {{ $posta->kehadiran }}</td>
-                <td>{{ $posta->keterangan }} </td>
-               </tr>
-               
-               @else 
+             
                 <tr>
                 <th rowspan="1">{{ $a = \Carbon\Carbon::parse($posta->tanggal)->translatedFormat('l, d M Y')}}</th>
                 <td>{{ $b = \Carbon\Carbon::parse($posta->jam)->translatedFormat('H:s')}}</td>
@@ -64,8 +54,10 @@
                 <td>{{ $posta->disposisi }} - {{ $posta->kehadiran }}</td>
                 <td>{{ $posta->keterangan }} </td>
                </tr>
-
-               @endif
+               
+               
+               </tr>
+ 
              @endforeach
                
                 

@@ -42,6 +42,7 @@ class AgendaController extends Controller
     public function create()
     {
         //
+         return view('agenda.create');
     }
 
     /**
@@ -53,6 +54,23 @@ class AgendaController extends Controller
     public function store(Request $request)
     {
         //
+        //dd($request->all());
+          $validatedData = $request->validate([
+            'tanggal' => 'date',
+            'jam' => 'required',
+            'acara' => 'required',
+            'tempat' => 'required',
+            'penyelenggara' => 'required',
+            'disposisi' => 'required',
+            'kehadiran' => 'required',
+            'keterangan' => 'required'
+        ]);
+
+        $validatedData['user_id'] = auth()->user()->id;
+        // die();
+        
+        agenda::create($validatedData);
+        return redirect('/agenda')->with('success','New agenda Has Been Add!');
     }
 
     /**
@@ -75,6 +93,10 @@ class AgendaController extends Controller
     public function edit(agenda $agenda)
     {
         //
+          return view('agenda.edit',[
+              'agenda'=> $agenda
+          ]);
+          
     }
 
     /**
@@ -87,6 +109,24 @@ class AgendaController extends Controller
     public function update(Request $request, agenda $agenda)
     {
         //
+
+          $validatedData = $request->validate([
+            'tanggal' => 'date',
+            'jam' => 'required',
+            'acara' => 'required',
+            'tempat' => 'required',
+            'penyelenggara' => 'required',
+            'disposisi' => 'required',
+            'kehadiran' => 'required',
+            'keterangan' => 'required'
+        ]);
+
+        $validatedData['user_id'] = auth()->user()->id;
+        // die();
+        agenda::where('id',$agenda->id)
+        ->update($validatedData);
+        return redirect('/agenda')->with('success','agenda Has Been Update!');
+        
     }
 
     /**
@@ -97,6 +137,9 @@ class AgendaController extends Controller
      */
     public function destroy(agenda $agenda)
     {
-        //
+        // dd($agenda->all());
+        agenda::destroy($agenda->id);
+        return redirect('/agenda')->with('deleted','Your agenda Has Been Deleted!');
+  
     }
 }

@@ -29,9 +29,13 @@ Data Kelas
         </div>
       </div> 
 
-   @if(session()->has('success'))
+@if(session()->has('success'))
       <div class="alert alert-success" role="alert">
         {{session('success')}}
+      </div>
+@elseif(session()->has('deleted'))
+ <div class="alert alert-danger" role="alert">
+        {{session('deleted')}}
       </div>
   @endif
 
@@ -49,11 +53,17 @@ Data Kelas
       
     <tr>
       <th scope="row">{{$loop->iteration}}</th> 
-      <td>{{ $posta->nama_kelas }}</td>
+      <td><a href="/kelas/{{ $posta['id']}}">{{ $posta->nama_kelas }}</a></td>
       <td>{{ $posta->wali_kelas }}</td>
       <td>
-<button type="button" class="btn btn-warning">Edit</button>
-<button type="button" class="btn btn-danger">Hapus</button></td>
+ <a href="/kelas/{{$posta->id}}/edit"  role="button" class="btn btn-warning">Edit</a>
+<form action="/kelas/{{ $posta->id }}" class="d-inline" method="post">
+                    @method('delete')
+                    @csrf
+
+                      <button onclick="return confirm('Are You Sure')"  role="button" class="btn btn-danger">Hapus</button>
+</form>
+                    </td>
     </tr>
     @endforeach
     

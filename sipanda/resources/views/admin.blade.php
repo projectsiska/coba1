@@ -42,9 +42,9 @@ Data Admin
                 </tr>
             </thead>
             <tbody style="overflow:auto;">
-             @foreach($post as $posta)
+            @foreach(\App\Models\Gabungan::where('tanggal', $posta->tanggal)->get() as $apa
                 <tr>
-                <th scope="row" rowspan="2">{{ $posta->tanggal }}</th>
+                <th scope="row" rowspan="">{{ $posta->tanggal }}</th>
                 <td>{{ $posta->jam }}</td>
                 <td>{{ $posta->acara }}</td>
                 <td>{{ $posta->tempat }}</td>

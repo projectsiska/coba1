@@ -47,10 +47,7 @@ Route::get('/', function () {
 
 
 //kelas komponen
- 
-/* Route::get('/kelas', function() {
-    return view('kelas.index');
-});  */
+  
 
 Route::get('/kelas/checkSlug', [kelasController::class, 'checkSlug']);
 Route::resource('/kelas', kelasController::class);
@@ -60,6 +57,7 @@ Route::resource('/kelas', kelasController::class);
 
 //periode komponen
 
+Route::get('/periode/checkSlug', [periodeController::class, 'checkSlug']);
 Route::resource('/periode', periodeController::class);
  
 //end periode
@@ -69,6 +67,7 @@ Route::resource('/periode', periodeController::class);
 
 //siswa komponen
 
+Route::get('/siswa/checkSlug', [siswaController::class, 'checkSlug']);
 Route::resource('/siswa', siswaController::class); 
  
 //end siswa
@@ -79,6 +78,7 @@ Route::resource('/siswa', siswaController::class);
 
 //pembayaran komponen
 
+Route::get('/pembayaran/checkSlug', [pembayaranController::class, 'checkSlug']);
 Route::resource('/pembayaran', pembayaranController::class); 
 
 //end pembayaran
@@ -87,6 +87,7 @@ Route::resource('/pembayaran', pembayaranController::class);
 
 //ketentuan komponen
 
+Route::get('/ketentuan/checkSlug', [ketentuanController::class, 'checkSlug']);
 Route::resource('/ketentuan', ketentuanController::class); 
 
 //end ketentuan

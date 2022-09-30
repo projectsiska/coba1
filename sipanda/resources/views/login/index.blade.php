@@ -303,11 +303,7 @@
                   </div>
                   <input type="password" placeholder="Password Anda" name="password">
                 </div>
-                  @error('username')
-                  <div class="invalid-feedback">
-                      {{$message}}
-                  </div>
-                  @enderror 
+                
                     <br>
 
                     @if(session()->has('success'))

@@ -24,7 +24,7 @@ Tambah Data Kelas
   </div>
   <div class="form-group">
     <label for="exampleInputPassword1">Slug</label>
-    <input type="text" name="slug"  value="{{ old('slug')}}" disabled required class="form-control @error('slug') is->invalid @enderror" id="slug" placeholder="Slug">
+    <input type="text" name="slug"  value="{{ old('slug')}}" readonly required class="form-control @error('slug') is->invalid @enderror" id="slug" placeholder="Slug">
   </div>
 
   @error('slug')

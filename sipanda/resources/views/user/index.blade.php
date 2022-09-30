@@ -13,7 +13,9 @@ Data User
 <div class="container" style="padding: 20px">
 
 <div class="row" style="display:flex; margin-bottom:5px">
-        <div class="col-md-8"> <!--<button class="btn-primary">Tambah</button>--></div>
+        <div class="col-md-8">
+         <a type="button" href="/user/create" class="btn btn-primary">Tambah</a>   
+        </div>
         <div class="col-md-4">
           <form action="/user">
             <div class="input-group mb-3">
@@ -28,6 +30,15 @@ Data User
         </div>
       </div>
 
+       @if(session()->has('success'))
+      <div class="alert alert-success" role="alert">
+        {{session('success')}}
+      </div>
+  @endif
+
+                <input  hidden value="{{ $siapa = auth()->user()->level}}">
+
+
 <table class="table">
   <thead class="thead-light">
     <tr>
@@ -35,6 +46,10 @@ Data User
       <th scope="col">Jabatan</th>
       <th scope="col">Email</th>
       <th scope="col">Username</th> 
+       @if($siapa=="Super Admin" or $siapa=="Admin")
+                 
+                <th class="text-center">Aksi</th>
+                  @endif
     </tr>
   </thead>
   <tbody style="overflow:auto;">
@@ -44,7 +59,12 @@ Data User
       <td>{{ $posta->name }}</td>
       <td>{{ $posta->level }}</td>
       <td>{{ $posta->email }}</td>
-      <td>{{ $posta->username }}</td> 
+      <td>{{ $posta->username }}</td>
+        @if($siapa=="Super Admin")
+                <td><div class="button">Edit</div> <div class="button">Hapus</div></td>
+      @elseif($siapa=="Admin") 
+      <td><div class="button">Edit</div> </td>
+        @endif
     </tr>
   @endforeach
   </tbody>

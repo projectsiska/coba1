@@ -33,7 +33,7 @@
         <li><i class="fa fa-home" aria-hidden="true"></i><a href="admin"><span>&nbsp; Home</span></a></li>
         <li><i class="fa fa-user" aria-hidden="true"></i> <span><a href="user">&nbsp; User</a></span></li>
         <li><i class="fa fa-calendar" aria-hidden="true"></i><a href="agenda"><span>&nbsp; Agenda</span></a></li>
-        <li><form action="/logout" method="post"> @csrf  LogOut </form></li>
+        <li><form action="/logout" method="post"> @csrf  <button type="submit">LogOut </button></form></li>
        
       </ul>
     </div>

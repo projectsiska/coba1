@@ -17,7 +17,7 @@ class CreateSiswasTable extends Migration
             $table->id();
             $table->string('nis')->unique();
             $table->string('nama_siswa');
-            $table->string('slug')->unique();
+            $table->string('slug');
             $table->string('jk');
             $table->string('alamat');
             $table->string('telepon');

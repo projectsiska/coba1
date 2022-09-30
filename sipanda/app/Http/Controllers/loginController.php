@@ -25,10 +25,21 @@ class loginController extends Controller
         if(Auth::attempt($credentials))
         {
             $request->session()->regenerate();
-            dd($credentials->user->level);
+            //dd($credentials->user->level);
             return redirect()->intended('/admin');
         }
 
         return back()->with('loginError','Login Failed!');
+    }
+
+    public function logout(Request $request)
+    {
+        Auth::logout();
+    
+        $request->session()->invalidate();
+    
+        $request->session()->regenerateToken();
+    
+        return redirect('/login');
     }
 }

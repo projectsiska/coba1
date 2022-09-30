@@ -36,16 +36,16 @@ Route::get('/', function () {
             ->filter(request(['search']))
             ->paginate(5)->withQueryString() 
             
-            ]);
+            ])->middleware('auth');
              
 
 })->middleware('auth');
 
-Route::get('/',[homeController::class,'index']);
+Route::get('/',[homeController::class,'index'])->middleware('auth');
  
  
 //admin
-Route::get('/admin',[adminController::class,'index']);
+Route::get('/admin',[adminController::class,'index'])->middleware('auth');
 
 //End Admin
 
@@ -53,7 +53,7 @@ Route::get('/admin',[adminController::class,'index']);
 //agenda
 Route::get('/agenda', function () {
     return view('agenda');
-});
+})->middleware('auth');
  
 
 Route::resource('/agenda', agendaController::class)->middleware('auth');
@@ -62,12 +62,12 @@ Route::resource('/agenda', agendaController::class)->middleware('auth');
 
 Route::get('/user', function () {
  
-});
-
+})->middleware('auth');
+Route::resource('/user', userController::class);
 Route::get('/user',[userController::class,'index']);
  
 //end user
 
-Route::get('/login', [loginController::class,'index']);
+Route::get('/login', [loginController::class,'index'])->name('login');
 Route::post('/login', [loginController::class,'authenticate']);
 Route::post('/logout', [loginController::class,'logout']);

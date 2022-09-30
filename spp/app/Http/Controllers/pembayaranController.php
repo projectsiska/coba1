@@ -4,6 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\pembayaran;
+use \Cviebrock\EloquentSluggable\Services\SlugService;
+use App\Models\kelas;
+use App\Models\siswa;
+use App\Models\periode;
+use App\Models\ketentuan;
 
 class pembayaranController extends Controller
 {
@@ -30,6 +35,12 @@ class pembayaranController extends Controller
     public function create()
     {
         //
+         return view('pembayaran.create', [
+            'kelas' => kelas::all(),
+            'siswa' => siswa::all(),
+            'periode' => periode::all(),
+            'ketentuan' => ketentuan::all()
+        ]);
     }
 
     /**
@@ -97,7 +108,12 @@ class pembayaranController extends Controller
     {
         //
     }
- 
+    
+    public function checkSlug(Request $request)
+    {
+        $slug = SlugService::createSlug(pembayaran::class, 'slug', $request->id);
+        return response()->json(['slug' => $slug]);
+    }
 }
 
 ?>
